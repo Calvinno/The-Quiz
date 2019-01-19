@@ -55,7 +55,7 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mathematicalExpressionTextField.delegate = self
-        
+        self.matematicStackViewHeightConstraint.constant = self.view.frame.height - 150
         if let hidden = matematicalQuizIsHidden
         {
             contrysNumber = contrys.count
@@ -301,7 +301,10 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        moveStackView()
+        if !compressed
+        {
+            moveStackView()
+        }
         playerAnswerMathematicalExpression()
         return true
     }
