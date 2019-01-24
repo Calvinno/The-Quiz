@@ -8,7 +8,7 @@
 
 import UIKit
 import Foundation
-struct Image_Contry
+struct ContryImage
 {
     var image:UIImage
     var answer:String

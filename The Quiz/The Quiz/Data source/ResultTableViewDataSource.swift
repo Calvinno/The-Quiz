@@ -11,7 +11,7 @@ import UIKit
 class ResultTableViewDataSource: NSObject, UITableViewDataSource {
     
     var matematicalResults:[MatematicalExpression]?
-    var contryResults:[Image_Contry]?
+    var contryResults:[ContryImage]?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var resultsCount = 0

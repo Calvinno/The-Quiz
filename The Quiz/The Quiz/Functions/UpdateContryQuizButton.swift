@@ -9,7 +9,7 @@
 import UIKit
 
 // It was a test to see if I can put function in other file
-func updateContryQuizButton(contry:Image_Contry,buttons:[UIButton])
+func updateContryQuizButton(contry:ContryImage,buttons:[UIButton])
 {
     var answerPossibilitys = contry.answerPossibility
     

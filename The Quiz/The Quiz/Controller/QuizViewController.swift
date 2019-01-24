@@ -11,14 +11,14 @@ import UIKit
 class QuizViewController: UIViewController,UITextFieldDelegate {
     
     var mathematicalExpressionAnswers = [MatematicalExpression]()
-    var contryQuizAnswers = [Image_Contry]()
+    var contryQuizAnswers = [ContryImage]()
     var matematicalExpressionsNumber = 0
     var contrysNumber = 0
     var questionIndex = 1
     var timer = Timer()
     var time:Int = 0
     var mathematicalExpression:MatematicalExpression?
-    var contry:Image_Contry?
+    var contry:ContryImage?
     var keyboardHeight: CGFloat = 0
     
     @IBOutlet weak var progressBar: UIProgressView!
@@ -46,12 +46,12 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
                                                           MatematicalExpression(expression: "3 × 5 - 36 ÷ 4 + 1", answer: "7", playerCorectlyAnswered: false),
                                                           MatematicalExpression(expression: "5 + 3 - 9 × 2", answer: "-10", playerCorectlyAnswered: false)]
     // See pixeEb for image
-    var contrys:[Image_Contry] = [Image_Contry(image: #imageLiteral(resourceName: "Pyramide"), answer: "Égypte", answerPossibility:["Cuba","Inde","Brésil","Égypte"] ,playerCorectlyAnswered: false),
-                                  Image_Contry(image: #imageLiteral(resourceName: "Tour Eiffel"), answer: "France", answerPossibility: ["Angleterre","Russie","Allemagne","France"], playerCorectlyAnswered: false),
-                                  Image_Contry(image: #imageLiteral(resourceName: "Machu Picchu"),answer:"Perou", answerPossibility: [ "Chili","Chine","Asie","Perou"], playerCorectlyAnswered: false),
-                                  Image_Contry(image: #imageLiteral(resourceName: "Empire State Building"), answer: "Étas-Unis", answerPossibility: ["Mexique","Indonésie","Japon","Étas-Unis"], playerCorectlyAnswered: false),
-                                  Image_Contry(image: #imageLiteral(resourceName: "gaspesie-1373018_1920"), answer: "Canada", answerPossibility: ["Grèce","Australie","Haïti","Canada"], playerCorectlyAnswered: false),
-                                  Image_Contry(image: #imageLiteral(resourceName: "london-2393098_1920"), answer: "Angleterre", answerPossibility: ["Espagne","Italie","Corée du Sud","Angleterre"], playerCorectlyAnswered: false)]
+    var contrys:[ContryImage] = [ContryImage(image: #imageLiteral(resourceName: "Pyramide"), answer: "Égypte", answerPossibility:["Cuba","Inde","Brésil","Égypte"] ,playerCorectlyAnswered: false),
+                                  ContryImage(image: #imageLiteral(resourceName: "Tour Eiffel"), answer: "France", answerPossibility: ["Angleterre","Russie","Allemagne","France"], playerCorectlyAnswered: false),
+                                  ContryImage(image: #imageLiteral(resourceName: "Machu Picchu"),answer:"Perou", answerPossibility: [ "Chili","Chine","Asie","Perou"], playerCorectlyAnswered: false),
+                                  ContryImage(image: #imageLiteral(resourceName: "Empire State Building"), answer: "Étas-Unis", answerPossibility: ["Mexique","Indonésie","Japon","Étas-Unis"], playerCorectlyAnswered: false),
+                                  ContryImage(image: #imageLiteral(resourceName: "gaspesie-1373018_1920"), answer: "Canada", answerPossibility: ["Grèce","Australie","Haïti","Canada"], playerCorectlyAnswered: false),
+                                  ContryImage(image: #imageLiteral(resourceName: "london-2393098_1920"), answer: "Angleterre", answerPossibility: ["Espagne","Italie","Corée du Sud","Angleterre"], playerCorectlyAnswered: false)]
     override func viewDidLoad() {
         super.viewDidLoad()
         mathematicalExpressionTextField.delegate = self
@@ -67,6 +67,8 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
         else
         {
             NotificationCenter.default.addObserver(self,selector: #selector(keyboardWillShow),name: UIResponder.keyboardWillShowNotification,object: nil)
+            mathematicalExpressionTextField.becomeFirstResponder()
+            moveStackView()
             matematicalExpressionsNumber = matematicalExpressions.count
             startMatematicalTimer()
             contryQuizStackView.isHidden = true
@@ -127,11 +129,6 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
     
     func nextMatematicalExpression()
     {
-        if !compressed
-        {
-            moveStackView()
-        }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2)
         {
             
@@ -146,10 +143,12 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
                 self.matematicalExpressionTimerLabel.text = "10"
                 self.startMatematicalTimer()
                 self.mathematicalExpressionTextField.isEnabled = true
+                self.mathematicalExpressionTextField.becomeFirstResponder()
             }
             else
             {
                 self.mathematicalExpressionTextField.isEnabled = false
+                
                 self.performSegue(withIdentifier: "ResultSegue", sender: nil)
             }
         }
@@ -182,9 +181,9 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
     func startContryTimer()
     {
         time = 10
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateContryTimer) , userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateImageRepresentationTimer) , userInfo: nil, repeats: true)
     }
-    @objc func updateContryTimer()
+    @objc func updateImageRepresentationTimer()
     {
         time -= 1
         contryQuizTimerLabel.text = String(time)
@@ -276,15 +275,7 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
         self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.3)
         {
-            if (self.compressed == true)
-            {
                 self.matematicStackViewHeightConstraint.constant = self.view.frame.height - (self.keyboardHeight + 100)
-            }
-            else
-            {
-                self.matematicStackViewHeightConstraint.constant = self.matematicStackViewHeightConstraint.constant + self.keyboardHeight - 50
-            }
-            self.compressed = !self.compressed
             self.view.layoutIfNeeded()
         }
     }
@@ -299,15 +290,6 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
     }
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        if !compressed
-        {
-            moveStackView()
-        }
-        playerAnswerMathematicalExpression()
-        return true
-    }
     
     //prepare for segue func
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -315,14 +297,14 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
         let resultViewController = segue.destination as? ResultViewController
         if matematicalQuizStackview.isHidden == true
         {
-            resultViewController?.contryAnswers = contryQuizAnswers
-            resultViewController?.matematicalAnswers = nil
+            let answer = Answers.contry(contryQuizAnswers)
+            resultViewController?.answer = answer
             
         }
         else
         {
-            resultViewController?.matematicalAnswers = mathematicalExpressionAnswers
-            resultViewController?.contryAnswers = nil
+            let answer = Answers.mathematical(mathematicalExpressionAnswers)
+            resultViewController?.answer = answer
         }
         
         let resultVC = segue.destination as? ResultViewController

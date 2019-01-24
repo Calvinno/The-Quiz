@@ -32,7 +32,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Gw-b2-UfB">
                                                 <rect key="frame" x="0.0" y="0.0" width="374" height="152.33333333333334"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
-                                                <state key="normal" title="Matematic Quiz"/>
+                                                <state key="normal" title="Quiz de mathématique"/>
                                                 <connections>
                                                     <segue destination="I1t-yb-fx9" kind="presentation" identifier="MatematicQuizSegue" id="Md6-Hg-J76"/>
                                                 </connections>
@@ -40,7 +40,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOu-Tt-aUQ">
                                                 <rect key="frame" x="0.0" y="152.33333333333337" width="374" height="152"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                                <state key="normal" title="Contry Quiz"/>
+                                                <state key="normal" title="Quiz des pays"/>
                                                 <connections>
                                                     <segue destination="I1t-yb-fx9" kind="presentation" identifier="ContryQuizSegue" id="MIg-HX-mhM"/>
                                                 </connections>
@@ -50,7 +50,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NTi-PU-vZg">
                                         <rect key="frame" x="0.0" y="676.33333333333337" width="374" height="141.66666666666663"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Previous result">
+                                        <state key="normal" title="Résultats précédents">
                                             <color key="titleColor" red="1" green="0.15418282420000001" blue="0.14109001869999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
