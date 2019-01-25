@@ -28,6 +28,9 @@
 		E2AF5B77217E3D05004C5051 /* MatematicalExpression.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AF5B76217E3D05004C5051 /* MatematicalExpression.swift */; };
 		E2C1386621A8A94D008E1681 /* SavesResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C1386521A8A94D008E1681 /* SavesResultsTableViewController.swift */; };
 		E2DD0C5C21DBFC2E0038F6A0 /* PreviousResult.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DD0C5A21DBFC2E0038F6A0 /* PreviousResult.storyboard */; };
+		E2E3271321FB8F0300F15676 /* correctAnswerSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E2E3271121FB8F0300F15676 /* correctAnswerSoundEffect.mp3 */; };
+		E2E3271421FB8F0300F15676 /* wrongBuzzerSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E2E3271221FB8F0300F15676 /* wrongBuzzerSoundEffect.mp3 */; };
+		E2E3271921FB90DC00F15676 /* WrongAnswerAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E3271821FB90DC00F15676 /* WrongAnswerAnimation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		E2AF5B76217E3D05004C5051 /* MatematicalExpression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatematicalExpression.swift; sourceTree = "<group>"; };
 		E2C1386521A8A94D008E1681 /* SavesResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavesResultsTableViewController.swift; sourceTree = "<group>"; };
 		E2DD0C5B21DBFC2E0038F6A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Quiz QUIZ!/StoryBoard/Base.lproj/PreviousResult.storyboard"; sourceTree = "<group>"; };
+		E2E3271121FB8F0300F15676 /* correctAnswerSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = correctAnswerSoundEffect.mp3; sourceTree = "<group>"; };
+		E2E3271221FB8F0300F15676 /* wrongBuzzerSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = wrongBuzzerSoundEffect.mp3; sourceTree = "<group>"; };
+		E2E3271821FB90DC00F15676 /* WrongAnswerAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerAnimation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				E272CEE621AC6A3D00D876F4 /* UpdateContryQuizButton.swift */,
+				E2E3271821FB90DC00F15676 /* WrongAnswerAnimation.swift */,
 			);
 			path = Functions;
 			sourceTree = "<group>";
@@ -157,6 +164,7 @@
 				E28A795C21F62B1100E347D1 /* Extension */,
 				E272CEE821AC6A4D00D876F4 /* Functions */,
 				E20B998821F7C77300094B29 /* Enumeration */,
+				E2E3271021FB8EB400F15676 /* Audio */,
 				E2AF5B69217E3C7D004C5051 /* Assets.xcassets */,
 				E2AF5B6B217E3C7D004C5051 /* LaunchScreen.storyboard */,
 				E2AF5B6E217E3C7D004C5051 /* Info.plist */,
@@ -184,6 +192,15 @@
 				E2C1386521A8A94D008E1681 /* SavesResultsTableViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		E2E3271021FB8EB400F15676 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				E2E3271121FB8F0300F15676 /* correctAnswerSoundEffect.mp3 */,
+				E2E3271221FB8F0300F15676 /* wrongBuzzerSoundEffect.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,7 +262,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2DD0C5C21DBFC2E0038F6A0 /* PreviousResult.storyboard in Resources */,
+				E2E3271321FB8F0300F15676 /* correctAnswerSoundEffect.mp3 in Resources */,
 				E2AF5B6D217E3C7D004C5051 /* LaunchScreen.storyboard in Resources */,
+				E2E3271421FB8F0300F15676 /* wrongBuzzerSoundEffect.mp3 in Resources */,
 				E2AF5B6A217E3C7D004C5051 /* Assets.xcassets in Resources */,
 				E2AF5B68217E3C7B004C5051 /* Main.storyboard in Resources */,
 			);
@@ -261,6 +280,7 @@
 				E266C1982183D941006CF4DB /* ResultViewController.swift in Sources */,
 				E2AF5B77217E3D05004C5051 /* MatematicalExpression.swift in Sources */,
 				E28A795E21F62B5000E347D1 /* Sequence.swift in Sources */,
+				E2E3271921FB90DC00F15676 /* WrongAnswerAnimation.swift in Sources */,
 				E20B998A21F7C7AD00094B29 /* Comment.swift in Sources */,
 				E207DDDA21A77C1B00A17AAC /* QuizResult.swift in Sources */,
 				E266C1942183D7E6006CF4DB /* IntroductionViewController.swift in Sources */,

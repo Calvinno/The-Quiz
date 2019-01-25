@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class QuizViewController: UIViewController,UITextFieldDelegate {
     
@@ -20,6 +21,8 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
     var mathematicalExpression:MatematicalExpression?
     var contry:ContryImage?
     var keyboardHeight: CGFloat = 0
+    var wrongAnswerAudioPlayer = AVAudioPlayer()
+    var goodAnswerAudioPlayer = AVAudioPlayer()
     
     @IBOutlet weak var progressBar: UIProgressView!
     
@@ -56,6 +59,16 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
         super.viewDidLoad()
         mathematicalExpressionTextField.delegate = self
         self.matematicStackViewHeightConstraint.constant = self.view.frame.height - 150
+        
+        guard let wrongAnswerAudioplayer = try? AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "wrongBuzzerSoundEffect", ofType: "mp3")!)) else {print("Not able load sond effect"); return}
+        self.wrongAnswerAudioPlayer = wrongAnswerAudioplayer
+        
+        guard let goodAnswerAudioplayer = try? AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "correctAnswerSoundEffect", ofType: "mp3")!)) else {print("Not able load sond effect"); return}
+        self.goodAnswerAudioPlayer = goodAnswerAudioplayer
+        
+        self.goodAnswerAudioPlayer.prepareToPlay()
+        self.wrongAnswerAudioPlayer.prepareToPlay()
+        
         if let hidden = matematicalQuizIsHidden
         {
             contrysNumber = contrys.count
@@ -94,6 +107,8 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
         
         if mathematicalExpressionTextField.text == mathematicalExpression?.answer
         {
+            goodAnswerAudioPlayer.currentTime = 0.5
+            goodAnswerAudioPlayer.play()
             mathematicalExpressionTextField.textColor = UIColor.green
             mathematicalExpression?.playerCorectlyAnswered = true
             mathematicalExpressionAnswers.append(mathematicalExpression!)
@@ -102,6 +117,9 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
         }
         else
         {
+            mathematicalExpressionWrongAnswerAnimation(label: matematicalExpresionLabel)
+            wrongAnswerAudioPlayer.currentTime = 1
+            wrongAnswerAudioPlayer.play()
             mathematicalExpressionTextField.textColor = UIColor.red
             mathematicalExpression?.playerCorectlyAnswered = false
             mathematicalExpressionAnswers.append(mathematicalExpression!)
@@ -256,12 +274,17 @@ class QuizViewController: UIViewController,UITextFieldDelegate {
         }
         if answer == contry?.answer
         {
+            goodAnswerAudioPlayer.currentTime = 0.5
+            goodAnswerAudioPlayer.play()
             sender.setTitleColor(.green, for: .normal)
             contry?.playerCorectlyAnswered = true
             contryQuizAnswers.append(contry!)
         }
         else
         {
+            contryWrongAnswerAnimation(image: contryQuizImageView)
+            wrongAnswerAudioPlayer.currentTime = 1
+            wrongAnswerAudioPlayer.play()
             sender.setTitleColor(.red, for: .normal)
             contry?.playerCorectlyAnswered = false
             contryQuizAnswers.append(contry!)
