@@ -31,9 +31,9 @@ class ResultViewController: UIViewController {
         case "En dessous de la moyenne":
             resultText = "Vous avez peut être besoin de reviser vos mathématique ou d'appronfondir vos connaissance générale"
         case "Dans la moyenne":
-            resultText = "Vous ête normale"
+            resultText = "Vous n'avez pas plus de connaissance que la plus part des gens mais pas moin non plus."
         case "Au dessu de la moyenne":
-            resultText = "Vous êtes supérieur à la moyenne"
+            resultText = "Vous avez plus de connaissance que la majorité des gens. Félicitation"
         case "Génie":
             resultText = "Vous mériter de controller le monde tellement vos faculté intelectuelle sont élevé"
         default:
