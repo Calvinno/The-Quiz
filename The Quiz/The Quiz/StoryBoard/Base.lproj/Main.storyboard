@@ -210,7 +210,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="cho-fa-JJH"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Something" id="s4y-9D-0nr"/>
+                    <navigationItem key="navigationItem" title="The quiz" id="s4y-9D-0nr"/>
                     <connections>
                         <outlet property="contryQuizImageView" destination="Yy0-Zb-pt7" id="6D2-W9-9j0"/>
                         <outlet property="contryQuizStackView" destination="wCk-zF-4e7" id="qgT-kh-Trg"/>
